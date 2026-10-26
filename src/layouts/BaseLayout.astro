@@ -1,0 +1,95 @@
+---
+import { SITE_CONFIG } from '../config/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalPath?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title,
+  description = SITE_CONFIG.defaultDescription,
+  canonicalPath = Astro.url.pathname,
+  ogType = 'website',
+  jsonLd,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, SITE_CONFIG.url).toString();
+const fullTitle = title.includes(SITE_CONFIG.name) ? title : `${title} | ${SITE_CONFIG.name}`;
+const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- OpenGraph Metadata -->
+  <meta property="og:site_name" content={SITE_CONFIG.name} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={canonicalUrl} />
+
+  <!-- X / Twitter Card Metadata -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+
+  {schemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans antialiased flex flex-col selection:bg-emerald-500 selection:text-slate-950">
+  <!-- Top Navigation -->
+  <header class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+      <a href="/" class="flex items-center gap-2.5 group">
+        <span class="w-8 h-8 rounded-lg bg-emerald-500 text-slate-950 font-black flex items-center justify-center text-sm tracking-tighter group-hover:bg-emerald-400 transition">
+          EW
+        </span>
+        <span class="font-extrabold text-white tracking-tight text-lg">
+          Elliptical<span class="text-emerald-400">Workouts</span><span class="text-slate-500 text-xs font-mono">.com</span>
+        </span>
+      </a>
+
+      <nav aria-label="Primary Navigation" class="hidden sm:flex items-center gap-5 text-sm font-medium text-slate-300">
+        <a href="/" class="hover:text-emerald-400 transition">All Routines</a>
+        <a href="/workouts/20-minute-hiit-elliptical-burn" class="hover:text-emerald-400 transition">20m HIIT</a>
+        <a href="/workouts/30-minute-low-impact-knee-rehab" class="hover:text-emerald-400 transition">Knee Friendly</a>
+        <a href="/workouts/45-minute-pyramid-glute-climb" class="hover:text-emerald-400 transition">Glute Climb</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <slot />
+  </main>
+
+  <!-- Footer with FTC Affiliate & Medical Disclaimer -->
+  <footer class="border-t border-slate-900 bg-slate-950 mt-16 py-10 text-xs text-slate-500">
+    <div class="max-w-5xl mx-auto px-4 space-y-4">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <p class="font-semibold text-slate-300">
+          &copy; {new Date().getFullYear()} {SITE_CONFIG.name} &mdash; Zero-Impact Interval Protocols &amp; Live Console Timers.
+        </p>
+        <div class="flex flex-wrap gap-4 text-slate-400">
+          <a href="/" class="hover:text-emerald-400 transition">Workout Directory</a>
+          <a href="/sitemap.xml" class="hover:text-emerald-400 transition">Sitemap</a>
+        </div>
+      </div>
+      <p class="leading-relaxed text-slate-500">
+        <strong class="text-slate-400">FTC Affiliate Disclosure:</strong> Some equipment links on {SITE_CONFIG.name} are affiliate links (`rel="nofollow sponsored"`). We may earn a commission at no additional cost to you when you purchase recommended elliptical machines. Consult a physician before starting any high-intensity exercise program.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

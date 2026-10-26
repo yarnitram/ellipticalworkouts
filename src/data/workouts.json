@@ -1,0 +1,245 @@
+[
+  {
+    "slug": "20-minute-hiit-elliptical-burn",
+    "title": "20-Minute HIIT Elliptical Fat-Burn Protocol",
+    "description": "Short, explosive sprint intervals designed to maximize EPOC caloric afterburn without joint impact.",
+    "durationMinutes": 20,
+    "difficulty": "Intermediate",
+    "caloriesBurned": "220-310 kcal",
+    "targetGoal": "HIIT / Fat Loss",
+    "recommendedMachine": {
+      "name": "Sole Fitness E25 Elliptical",
+      "tagline": "Heavy 20 lb flywheel prevents pedal slip during max-effort sprints.",
+      "affiliateUrl": "https://example.com/affiliate/sole-e25",
+      "priceRange": "$1,099",
+      "specs": {
+        "flywheel": "20 lb Heavy Duty",
+        "strideLength": "20 inches",
+        "maxIncline": "20 Levels Power Incline"
+      }
+    },
+    "intervals": [
+      { "name": "Warmup", "durationSec": 180, "resistance": 3, "incline": 0, "targetRpm": 55, "notes": "Easy cadence to elevate core temperature." },
+      { "name": "Sprint 1", "durationSec": 45, "resistance": 8, "incline": 2, "targetRpm": 80, "notes": "All-out sprint effort. Push and pull handles." },
+      { "name": "Recovery 1", "durationSec": 75, "resistance": 3, "incline": 0, "targetRpm": 50, "notes": "Deep nasal breathing, steady pace." },
+      { "name": "Sprint 2", "durationSec": 45, "resistance": 9, "incline": 4, "targetRpm": 80, "notes": "Drive through the heels." },
+      { "name": "Recovery 2", "durationSec": 75, "resistance": 3, "incline": 0, "targetRpm": 50, "notes": "Active recovery." },
+      { "name": "Sprint 3", "durationSec": 45, "resistance": 10, "incline": 5, "targetRpm": 85, "notes": "High resistance sprint." },
+      { "name": "Recovery 3", "durationSec": 75, "resistance": 4, "incline": 0, "targetRpm": 50, "notes": "Control your heart rate." },
+      { "name": "Sprint 4", "durationSec": 45, "resistance": 10, "incline": 6, "targetRpm": 85, "notes": "Explosive upper and lower body drive." },
+      { "name": "Recovery 4", "durationSec": 75, "resistance": 4, "incline": 0, "targetRpm": 50, "notes": "Shake out grip tension, maintain smooth stride." },
+      { "name": "Sprint 5", "durationSec": 45, "resistance": 11, "incline": 6, "targetRpm": 85, "notes": "Hold 85 RPM against heavy resistance." },
+      { "name": "Recovery 5", "durationSec": 75, "resistance": 3, "incline": 0, "targetRpm": 50, "notes": "Controlled exhale on every second stride." },
+      { "name": "Sprint 6", "durationSec": 45, "resistance": 11, "incline": 8, "targetRpm": 85, "notes": "Penultimate power interval. Stay tall." },
+      { "name": "Recovery 6", "durationSec": 75, "resistance": 3, "incline": 0, "targetRpm": 50, "notes": "Prepare mentally for the final sprint." },
+      { "name": "Sprint 7", "durationSec": 45, "resistance": 12, "incline": 8, "targetRpm": 90, "notes": "Final max-effort burst. Empty the tank." },
+      { "name": "Cooldown", "durationSec": 255, "resistance": 2, "incline": 0, "targetRpm": 45, "notes": "Flush lactic acid, slow controlled strides." }
+    ]
+  },
+  {
+    "slug": "30-minute-low-impact-knee-rehab",
+    "title": "30-Minute Low-Impact Knee-Friendly Stride Routine",
+    "description": "Zero-impact gliding workout engineered for individuals managing knee sensitivity or recovering from joint strain.",
+    "durationMinutes": 30,
+    "difficulty": "Beginner",
+    "caloriesBurned": "190-250 kcal",
+    "targetGoal": "Joint Health / LISS",
+    "recommendedMachine": {
+      "name": "Horizon Fitness 7.0 AE",
+      "tagline": "Ergonomic 20-inch stride length minimizes knee flexion angles.",
+      "affiliateUrl": "https://example.com/affiliate/horizon-7-0-ae",
+      "priceRange": "$999",
+      "specs": {
+        "flywheel": "23 lb Precision Balanced",
+        "strideLength": "20 inches SixStar Frame",
+        "maxIncline": "20 Levels Power Incline"
+      }
+    },
+    "intervals": [
+      { "name": "Gentle Warmup", "durationSec": 300, "resistance": 2, "incline": 0, "targetRpm": 45, "notes": "Smooth continuous gliding. Keep heels planted on pedals." },
+      { "name": "Steady Cruise 1", "durationSec": 600, "resistance": 4, "incline": 0, "targetRpm": 55, "notes": "Zone 2 conversational pace." },
+      { "name": "Reverse Stride", "durationSec": 300, "resistance": 3, "incline": 0, "targetRpm": 50, "notes": "Pedal backwards to activate hamstrings and balance quad pressure." },
+      { "name": "Steady Cruise 2", "durationSec": 300, "resistance": 5, "incline": 1, "targetRpm": 55, "notes": "Slight resistance increase, keep posture tall." },
+      { "name": "Cooldown Glides", "durationSec": 300, "resistance": 1, "incline": 0, "targetRpm": 40, "notes": "Full gentle recovery." }
+    ]
+  },
+  {
+    "slug": "45-minute-pyramid-glute-climb",
+    "title": "45-Minute Pyramid Glute & Posterior Chain Climb",
+    "description": "Progressive incline and high-resistance pyramid workout designed to target the glutes, hamstrings, and calves without spinal compression.",
+    "durationMinutes": 45,
+    "difficulty": "Advanced",
+    "caloriesBurned": "480-620 kcal",
+    "targetGoal": "Glute Hypertrophy / Climb",
+    "recommendedMachine": {
+      "name": "NordicTrack AirGlide 14i",
+      "tagline": "Up to 15% power ramp incline and -5% decline for maximum posterior chain recruitment.",
+      "affiliateUrl": "https://example.com/affiliate/nordictrack-airglide-14i",
+      "priceRange": "$1,799",
+      "specs": {
+        "flywheel": "32 lb Inertia-Enhanced",
+        "strideLength": "17.8-18.5 in Auto-Adjust",
+        "maxIncline": "-5% to +15% Ramp"
+      }
+    },
+    "intervals": [
+      { "name": "Dynamic Glute Warmup", "durationSec": 300, "resistance": 3, "incline": 2, "targetRpm": 55, "notes": "Sit slightly back into your hips and press through full heel contact." },
+      { "name": "Base Hill Climb", "durationSec": 300, "resistance": 6, "incline": 5, "targetRpm": 58, "notes": "Establish rhythmic breathing. Light grip on stationary handlebars." },
+      { "name": "Steepening Grade", "durationSec": 300, "resistance": 9, "incline": 8, "targetRpm": 55, "notes": "Hinge 10 degrees forward from the hips to load the glute max." },
+      { "name": "Ridge Push", "durationSec": 300, "resistance": 12, "incline": 12, "targetRpm": 52, "notes": "Heavy muscular tension. Avoid bouncing the knees." },
+      { "name": "Summit Peak Overload", "durationSec": 300, "resistance": 15, "incline": 15, "targetRpm": 48, "notes": "Maximum incline and resistance. Slow, deliberate power strokes." },
+      { "name": "Reverse Glute Isolation", "durationSec": 300, "resistance": 12, "incline": 12, "targetRpm": 50, "notes": "Pedal in reverse while keeping hips low for deep glute burn." },
+      { "name": "Descending Ridge", "durationSec": 300, "resistance": 9, "incline": 8, "targetRpm": 56, "notes": "Switch back to forward stride, increase RPM as resistance drops." },
+      { "name": "Base Tempo Flush", "durationSec": 300, "resistance": 6, "incline": 4, "targetRpm": 62, "notes": "Engage moving arms to boost total-body oxygen uptake." },
+      { "name": "Cooldown & Hip Stretch Stride", "durationSec": 300, "resistance": 2, "incline": 0, "targetRpm": 45, "notes": "Lengthen stride and allow heart rate to drop below 110 BPM." }
+    ]
+  },
+  {
+    "slug": "15-minute-express-fat-shred",
+    "title": "15-Minute Express Morning Fat-Shred Routine",
+    "description": "Time-crunched metabolic ignition workout combining brisk 60-second cadence surges with active recovery.",
+    "durationMinutes": 15,
+    "difficulty": "Beginner",
+    "caloriesBurned": "140-195 kcal",
+    "targetGoal": "Express Fat Burn",
+    "recommendedMachine": {
+      "name": "Schwinn 470 Elliptical",
+      "tagline": "Quick-select Goal Track console keys let you jump resistance levels in one tap.",
+      "affiliateUrl": "https://example.com/affiliate/schwinn-470",
+      "priceRange": "$899",
+      "specs": {
+        "flywheel": "High-Speed Perimeter Weighted",
+        "strideLength": "20 inches Precision Path",
+        "maxIncline": "10% Motorized Ramp"
+      }
+    },
+    "intervals": [
+      { "name": "Quick Ignition Warmup", "durationSec": 120, "resistance": 2, "incline": 0, "targetRpm": 52, "notes": "Brisk arm swing to wake up upper and lower body." },
+      { "name": "Brisk Surge 1", "durationSec": 60, "resistance": 6, "incline": 2, "targetRpm": 70, "notes": "Pick up cadence to 70 RPM. Smooth circular foot motion." },
+      { "name": "Steady Recovery 1", "durationSec": 60, "resistance": 3, "incline": 0, "targetRpm": 52, "notes": "Catch your breath while keeping pedals moving." },
+      { "name": "Brisk Surge 2", "durationSec": 60, "resistance": 6, "incline": 2, "targetRpm": 72, "notes": "Pull back firmly on the moving handles." },
+      { "name": "Steady Recovery 2", "durationSec": 60, "resistance": 3, "incline": 0, "targetRpm": 52, "notes": "Relax shoulders away from ears." },
+      { "name": "Brisk Surge 3", "durationSec": 60, "resistance": 7, "incline": 3, "targetRpm": 72, "notes": "Slight resistance bump—keep RPM above 70." },
+      { "name": "Steady Recovery 3", "durationSec": 60, "resistance": 3, "incline": 0, "targetRpm": 52, "notes": "Steady rhythmic breathing." },
+      { "name": "Brisk Surge 4", "durationSec": 60, "resistance": 7, "incline": 4, "targetRpm": 75, "notes": "Fastest turnover of the routine." },
+      { "name": "Steady Recovery 4", "durationSec": 60, "resistance": 3, "incline": 0, "targetRpm": 50, "notes": "Prepare for the 2-minute closing push." },
+      { "name": "Final Power Push", "durationSec": 120, "resistance": 8, "incline": 4, "targetRpm": 68, "notes": "Sustained strong effort for two full minutes." },
+      { "name": "Express Cooldown", "durationSec": 180, "resistance": 2, "incline": 0, "targetRpm": 45, "notes": "Gradually slow down until breathing is effortless." }
+    ]
+  },
+  {
+    "slug": "20-minute-beginner-steady-state-cardio",
+    "title": "20-Minute Beginner Aerobic Foundation Stride",
+    "description": "Approachable, rhythm-focused cardiovascular routine designed to build stamina and confidence without breathless spikes.",
+    "durationMinutes": 20,
+    "difficulty": "Beginner",
+    "caloriesBurned": "165-225 kcal",
+    "targetGoal": "Cardio Stamina / Heart Health",
+    "recommendedMachine": {
+      "name": "Sunny Health & Fitness SF-E3912",
+      "tagline": "Compact electromagnetic frame ideal for home cardio rooms and daily Zone 2 sessions.",
+      "affiliateUrl": "https://example.com/affiliate/sunny-sf-e3912",
+      "priceRange": "$499",
+      "specs": {
+        "flywheel": "15.4 lb Magnetic",
+        "strideLength": "15.5 inches Compact",
+        "maxIncline": "Fixed Flat Ergonomic"
+      }
+    },
+    "intervals": [
+      { "name": "Easy Mobility Warmup", "durationSec": 180, "resistance": 2, "incline": 0, "targetRpm": 48, "notes": "Focus on upright posture and flat foot contact." },
+      { "name": "Aerobic Base Stride 1", "durationSec": 300, "resistance": 4, "incline": 0, "targetRpm": 55, "notes": "Maintain a pace where you can speak in full sentences." },
+      { "name": "Posture & Arm-Drive Focus", "durationSec": 240, "resistance": 5, "incline": 2, "targetRpm": 58, "notes": "Let upper-body push/pull share 40% of the workload." },
+      { "name": "Aerobic Base Stride 2", "durationSec": 300, "resistance": 4, "incline": 1, "targetRpm": 56, "notes": "Smooth, quiet pedal strokes with engaged core." },
+      { "name": "Gentle Cooldown", "durationSec": 180, "resistance": 1, "incline": 0, "targetRpm": 42, "notes": "Easy recovery stride to bring heart rate back to baseline." }
+    ]
+  },
+  {
+    "slug": "30-minute-tabata-afterburn-intervals",
+    "title": "30-Minute Tabata VO2 Max & Afterburn Conditioner",
+    "description": "High-intensity anaerobic conditioning featuring three dense Tabata work blocks to push VO2 max and metabolic rate.",
+    "durationMinutes": 30,
+    "difficulty": "Advanced",
+    "caloriesBurned": "360-470 kcal",
+    "targetGoal": "VO2 Max / Anaerobic HIIT",
+    "recommendedMachine": {
+      "name": "Sole Fitness E35 Elliptical",
+      "tagline": "Commercial-grade 25 lb flywheel and dual-track rails lock in stability at 90+ RPM.",
+      "affiliateUrl": "https://example.com/affiliate/sole-e35",
+      "priceRange": "$1,499",
+      "specs": {
+        "flywheel": "25 lb Commercial Grade",
+        "strideLength": "20 inches Dual-Track",
+        "maxIncline": "20 Levels Power Incline"
+      }
+    },
+    "intervals": [
+      { "name": "Progressive Warmup", "durationSec": 240, "resistance": 3, "incline": 0, "targetRpm": 55, "notes": "Gradually increase RPM from 50 to 60 over 4 minutes." },
+      { "name": "Primer Surge", "durationSec": 120, "resistance": 7, "incline": 3, "targetRpm": 72, "notes": "Open up the lungs before high-output Tabata blocks." },
+      { "name": "Tabata Block 1 (Max Output)", "durationSec": 240, "resistance": 10, "incline": 4, "targetRpm": 85, "notes": "Alternate 20s all-out sprint (85+ RPM) with 10s easy coasting for 8 rounds." },
+      { "name": "Active Recovery Stride 1", "durationSec": 180, "resistance": 3, "incline": 0, "targetRpm": 48, "notes": "Slow cadence, focus on deep diaphragmatic recovery breaths." },
+      { "name": "Tabata Block 2 (High Incline)", "durationSec": 240, "resistance": 11, "incline": 10, "targetRpm": 80, "notes": "Alternate 20s steep power drive with 10s slow pedal turnover." },
+      { "name": "Active Recovery Stride 2", "durationSec": 180, "resistance": 3, "incline": 0, "targetRpm": 48, "notes": "Sip water and reset shoulder posture." },
+      { "name": "Tabata Block 3 (Final Finisher)", "durationSec": 240, "resistance": 12, "incline": 6, "targetRpm": 85, "notes": "Final 4-minute Tabata block—give every 20s work bout 100% effort." },
+      { "name": "Extended Lactic Flush Cooldown", "durationSec": 360, "resistance": 2, "incline": 0, "targetRpm": 45, "notes": "6 full minutes of easy spinning to clear lactate safely." }
+    ]
+  },
+  {
+    "slug": "30-minute-reverse-stride-core-sculpt",
+    "title": "30-Minute Reverse-Stride & Core Balance Sculpt",
+    "description": "Alternating forward, reverse, and hands-free balance intervals that challenge core stabilizers while toning quads and hamstrings evenly.",
+    "durationMinutes": 30,
+    "difficulty": "Intermediate",
+    "caloriesBurned": "275-350 kcal",
+    "targetGoal": "Core Toning / Lower Body",
+    "recommendedMachine": {
+      "name": "Bowflex Max Total 16",
+      "tagline": "Multi-grip dynamic handles and stable frame geometry support forward and reverse interval transitions.",
+      "affiliateUrl": "https://example.com/affiliate/bowflex-max-total-16",
+      "priceRange": "$1,999",
+      "specs": {
+        "flywheel": "High-Inertia Magnetic",
+        "strideLength": "Low-Impact Stepper/Glide",
+        "maxIncline": "20 Digital Resistance Levels"
+      }
+    },
+    "intervals": [
+      { "name": "Forward Glide Warmup", "durationSec": 240, "resistance": 3, "incline": 0, "targetRpm": 55, "notes": "Find your center of gravity over the foot pedals." },
+      { "name": "No-Hands Core Balance Forward", "durationSec": 300, "resistance": 6, "incline": 2, "targetRpm": 60, "notes": "Place hands on hips or pump arms like a runner—brace abs tightly." },
+      { "name": "Reverse Hamstring & Glute Drive 1", "durationSec": 300, "resistance": 7, "incline": 4, "targetRpm": 56, "notes": "Pedal backwards with light grip on stationary center bar." },
+      { "name": "Upper-Body Push/Pull Tempo", "durationSec": 300, "resistance": 8, "incline": 2, "targetRpm": 64, "notes": "Forward stride—exaggerate chest push and back row on moving handles." },
+      { "name": "Reverse Hamstring & Glute Drive 2", "durationSec": 300, "resistance": 8, "incline": 6, "targetRpm": 54, "notes": "Drop hips 2 inches lower while pedaling in reverse." },
+      { "name": "Core Stability Finisher", "durationSec": 180, "resistance": 7, "incline": 3, "targetRpm": 62, "notes": "Hands-free brisk forward stride with tall spine." },
+      { "name": "Slow Forward Cooldown", "durationSec": 180, "resistance": 2, "incline": 0, "targetRpm": 45, "notes": "Easy recovery stride and gentle torso rotation." }
+    ]
+  },
+  {
+    "slug": "45-minute-zone-2-endurance-base-builder",
+    "title": "45-Minute Zone 2 Mitochondrial Endurance Builder",
+    "description": "Sustained aerobic base-building protocol targeting 65-75% max heart rate to maximize fat oxidation and cardiovascular longevity.",
+    "durationMinutes": 45,
+    "difficulty": "Intermediate",
+    "caloriesBurned": "390-510 kcal",
+    "targetGoal": "Zone 2 Endurance / Longevity",
+    "recommendedMachine": {
+      "name": "ProForm Pro HIIT H14",
+      "tagline": "Silent Magnetic Resistance (SMR) and oversized cushioned pedals keep 45-minute endurance sessions whisper-quiet.",
+      "affiliateUrl": "https://example.com/affiliate/proform-hiit-h14",
+      "priceRange": "$1,499",
+      "specs": {
+        "flywheel": "30 lb Effective Inertia",
+        "strideLength": "10 in Vertical / 5 in Horizontal",
+        "maxIncline": "26 Digital Resistance Levels"
+      }
+    },
+    "intervals": [
+      { "name": "Gradual Aerobic Warmup", "durationSec": 300, "resistance": 3, "incline": 0, "targetRpm": 52, "notes": "Ease into rhythm with nasal-only breathing." },
+      { "name": "Zone 2 Cruise Block 1", "durationSec": 600, "resistance": 6, "incline": 2, "targetRpm": 60, "notes": "Lock into 60 RPM. Heart rate should stay in conversational Zone 2." },
+      { "name": "Cadence Pick-Up & Reverse Flush", "durationSec": 300, "resistance": 5, "incline": 0, "targetRpm": 65, "notes": "Pedal backwards for the middle 2 minutes to prevent foot numbness." },
+      { "name": "Zone 2 Cruise Block 2 (Mild Incline)", "durationSec": 600, "resistance": 7, "incline": 5, "targetRpm": 58, "notes": "Steady rolling hill effort. Keep shoulders relaxed." },
+      { "name": "Cadence Pick-Up & Posture Check", "durationSec": 300, "resistance": 6, "incline": 2, "targetRpm": 64, "notes": "Hydrate and maintain crisp 64 RPM cadence." },
+      { "name": "Zone 2 Steady Finisher", "durationSec": 300, "resistance": 7, "incline": 3, "targetRpm": 60, "notes": "Hold steady aerobic output without drifting into Zone 3." },
+      { "name": "Parasympathetic Cooldown", "durationSec": 300, "resistance": 2, "incline": 0, "targetRpm": 45, "notes": "Long slow exhales to kickstart post-workout recovery." }
+    ]
+  }
+]

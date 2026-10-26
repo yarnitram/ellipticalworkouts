@@ -1,0 +1,368 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import workoutsData from '../data/workouts.json';
+import {
+  type Workout,
+  SITE_CONFIG,
+  computeWorkoutStats,
+} from '../config/site';
+
+const workouts = workoutsData as Workout[];
+const durations = Array.from(new Set(workouts.map((w) => w.durationMinutes))).sort((a, b) => a - b);
+const difficulties = ['All', 'Beginner', 'Intermediate', 'Advanced'] as const;
+
+const hubJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Elliptical Workout Routines & Live Interval Timers | EllipticalWorkouts.com',
+  description: SITE_CONFIG.defaultDescription,
+  url: `${SITE_CONFIG.url}/`,
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: workouts.length,
+    itemListElement: workouts.map((workout, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${SITE_CONFIG.url}/workouts/${workout.slug}`,
+      name: workout.title,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Elliptical Workout Routines & Live Audio Interval Timers"
+  description={SITE_CONFIG.defaultDescription}
+  canonicalPath="/"
+  jsonLd={hubJsonLd}
+>
+  <div class="max-w-5xl mx-auto px-4 py-10 sm:py-14">
+    <!-- Hero Header -->
+    <section class="text-center max-w-3xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800/80 text-emerald-400 text-xs font-semibold mb-4">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Phone-Mounted Live Interval Console &bull; Screen Wake Lock &bull; Zero Joint Impact
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        Science-Backed <span class="text-emerald-400">Elliptical Workouts</span> With Built-In Audio Timers
+      </h1>
+      <p class="text-slate-400 mt-4 text-base sm:text-lg leading-relaxed">
+        Select your goal, duration, and fitness level below. Every workout includes a hands-free countdown timer with Web Audio 3-2-1 pips, exact RPM &amp; resistance cues, and screen wake lock for your elliptical holder.
+      </p>
+    </section>
+
+    <!-- Search & Multi-Dimensional Filter Console -->
+    <section
+      aria-label="Filter Workouts"
+      class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 mb-8 shadow-lg space-y-4"
+    >
+      <!-- Search Bar + Result Count -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div class="relative flex-1">
+          <label for="workout-search" class="sr-only">Search workouts by goal, duration, or keyword</label>
+          <input
+            id="workout-search"
+            type="search"
+            placeholder="Search routines (e.g., HIIT, knee rehab, glute climb, Zone 2, Sole E25)..."
+            class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition"
+          />
+        </div>
+        <div class="flex items-center justify-between sm:justify-end gap-3 text-xs font-mono text-slate-400 shrink-0">
+          <span id="results-counter">Showing {workouts.length} of {workouts.length} routines</span>
+          <button
+            id="clear-filters-btn"
+            type="button"
+            class="hidden px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-emerald-400 font-sans font-semibold transition cursor-pointer"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Pills Row: Difficulty & Duration -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2 border-t border-slate-800/80">
+        <!-- Difficulty Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by difficulty">
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 mr-1">
+            Difficulty:
+          </span>
+          {difficulties.map((level, idx) => (
+            <button
+              type="button"
+              data-difficulty-pill={level}
+              aria-pressed={idx === 0 ? 'true' : 'false'}
+              class={
+                idx === 0
+                  ? 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition cursor-pointer'
+                  : 'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer'
+              }
+            >
+              {level}
+            </button>
+          ))}
+        </div>
+
+        <!-- Duration Filter Pills -->
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by duration">
+          <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 mr-1">
+            Duration:
+          </span>
+          <button
+            type="button"
+            data-duration-pill="all"
+            aria-pressed="true"
+            class="px-3 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition cursor-pointer"
+          >
+            All Times
+          </button>
+          {durations.map((mins) => (
+            <button
+              type="button"
+              data-duration-pill={String(mins)}
+              aria-pressed="false"
+              class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer"
+            >
+              {mins} Min
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Workouts Directory Grid -->
+    <section aria-label="Workout Directory">
+      <div id="workout-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {workouts.map((workout) => {
+          const stats = computeWorkoutStats(workout);
+          const difficultyClass =
+            workout.difficulty === 'Beginner'
+              ? 'bg-sky-950/80 text-sky-300 border-sky-800/70'
+              : workout.difficulty === 'Intermediate'
+                ? 'bg-amber-950/80 text-amber-300 border-amber-800/70'
+                : 'bg-rose-950/80 text-rose-300 border-rose-800/70';
+
+          const searchableText = [
+            workout.title,
+            workout.description,
+            workout.targetGoal,
+            workout.difficulty,
+            workout.recommendedMachine.name,
+            `${workout.durationMinutes} minute`,
+          ]
+            .join(' ')
+            .toLowerCase();
+
+          return (
+            <article
+              data-workout-card
+              data-difficulty={workout.difficulty}
+              data-duration={String(workout.durationMinutes)}
+              data-search={searchableText}
+              class="group rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/60 transition-all duration-200 p-6 flex flex-col justify-between shadow-md"
+            >
+              <div>
+                <!-- Badges -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-950/80 text-emerald-400 border border-emerald-800">
+                      {workout.targetGoal}
+                    </span>
+                    <span class={`px-2.5 py-1 text-xs font-semibold rounded-md border ${difficultyClass}`}>
+                      {workout.difficulty}
+                    </span>
+                  </div>
+                  <span class="px-2.5 py-1 text-xs font-mono font-bold rounded-md bg-slate-950 text-white border border-slate-800">
+                    {workout.durationMinutes} min
+                  </span>
+                </div>
+
+                <!-- Title & Description -->
+                <h2 class="text-xl font-extrabold text-white group-hover:text-emerald-400 transition tracking-tight">
+                  <a href={`/workouts/${workout.slug}`} class="focus:outline-none">
+                    {workout.title}
+                  </a>
+                </h2>
+                <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                  {workout.description}
+                </p>
+
+                <!-- Quick Telemetry Strip -->
+                <div class="grid grid-cols-3 gap-2 my-5 p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 text-center">
+                  <div>
+                    <span class="block text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
+                      Est. Burn
+                    </span>
+                    <span class="text-xs font-mono font-bold text-emerald-400 mt-0.5 block">
+                      {workout.caloriesBurned}
+                    </span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
+                      Resistance
+                    </span>
+                    <span class="text-xs font-mono font-bold text-slate-200 mt-0.5 block">
+                      {stats.resistanceRange}
+                    </span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
+                      Target Cadence
+                    </span>
+                    <span class="text-xs font-mono font-bold text-slate-200 mt-0.5 block">
+                      {stats.rpmRange}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Footer: Machine Pick + Launch CTA -->
+              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                <div class="text-xs text-slate-400 truncate">
+                  <span class="text-slate-500">Gear Pick:</span>{' '}
+                  <span class="text-slate-300 font-medium">{workout.recommendedMachine.name}</span>
+                </div>
+                <a
+                  href={`/workouts/${workout.slug}`}
+                  class="shrink-0 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition"
+                >
+                  Start Workout &rarr;
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <!-- Empty Filter State -->
+      <div
+        id="empty-state"
+        class="hidden text-center py-14 px-4 rounded-2xl bg-slate-900/50 border border-slate-800"
+      >
+        <p class="text-lg font-bold text-white mb-1">No matching elliptical workouts found</p>
+        <p class="text-sm text-slate-400 mb-4">
+          Try clearing your search keyword or switching the difficulty / duration filter pills.
+        </p>
+        <button
+          id="empty-reset-btn"
+          type="button"
+          class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition cursor-pointer"
+        >
+          Show All Workouts
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Vanilla JS Search + Difficulty + Duration Filter Controller -->
+  <script>
+    const searchInput = document.getElementById('workout-search') as HTMLInputElement | null;
+    const difficultyPills = document.querySelectorAll<HTMLButtonElement>('[data-difficulty-pill]');
+    const durationPills = document.querySelectorAll<HTMLButtonElement>('[data-duration-pill]');
+    const cards = document.querySelectorAll<HTMLElement>('[data-workout-card]');
+    const resultsCounter = document.getElementById('results-counter');
+    const clearFiltersBtn = document.getElementById('clear-filters-btn');
+    const emptyState = document.getElementById('empty-state');
+    const emptyResetBtn = document.getElementById('empty-reset-btn');
+
+    let activeDifficulty = 'All';
+    let activeDuration = 'all';
+    let searchQuery = '';
+
+    const activePillClass =
+      'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition cursor-pointer';
+    const inactivePillClass =
+      'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer';
+
+    function updatePillStyles() {
+      difficultyPills.forEach((btn) => {
+        const isSelected = btn.dataset.difficultyPill === activeDifficulty;
+        btn.setAttribute('aria-pressed', String(isSelected));
+        btn.className = isSelected ? activePillClass : inactivePillClass;
+      });
+
+      durationPills.forEach((btn) => {
+        const isSelected = btn.dataset.durationPill === activeDuration;
+        btn.setAttribute('aria-pressed', String(isSelected));
+        btn.className = isSelected ? activePillClass : inactivePillClass;
+      });
+    }
+
+    function applyFilters() {
+      let visibleCount = 0;
+      const totalCount = cards.length;
+      const normalizedQuery = searchQuery.trim().toLowerCase();
+
+      cards.forEach((card) => {
+        const cardDiff = card.dataset.difficulty || '';
+        const cardDur = card.dataset.duration || '';
+        const cardSearch = card.dataset.search || '';
+
+        const matchesDifficulty = activeDifficulty === 'All' || cardDiff === activeDifficulty;
+        const matchesDuration = activeDuration === 'all' || cardDur === activeDuration;
+        const matchesSearch = !normalizedQuery || cardSearch.includes(normalizedQuery);
+
+        if (matchesDifficulty && matchesDuration && matchesSearch) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (resultsCounter) {
+        resultsCounter.textContent = `Showing ${visibleCount} of ${totalCount} routines`;
+      }
+
+      const isFiltered =
+        activeDifficulty !== 'All' || activeDuration !== 'all' || normalizedQuery.length > 0;
+
+      if (clearFiltersBtn) {
+        clearFiltersBtn.classList.toggle('hidden', !isFiltered);
+      }
+
+      if (emptyState) {
+        emptyState.classList.toggle('hidden', visibleCount > 0);
+      }
+    }
+
+    function resetAllFilters() {
+      activeDifficulty = 'All';
+      activeDuration = 'all';
+      searchQuery = '';
+      if (searchInput) searchInput.value = '';
+      updatePillStyles();
+      applyFilters();
+    }
+
+    difficultyPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeDifficulty = btn.dataset.difficultyPill || 'All';
+        updatePillStyles();
+        applyFilters();
+      });
+    });
+
+    durationPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeDuration = btn.dataset.durationPill || 'all';
+        updatePillStyles();
+        applyFilters();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = (e.target as HTMLInputElement).value;
+        applyFilters();
+      });
+    }
+
+    if (clearFiltersBtn) {
+      clearFiltersBtn.addEventListener('click', resetAllFilters);
+    }
+
+    if (emptyResetBtn) {
+      emptyResetBtn.addEventListener('click', resetAllFilters);
+    }
+  </script>
+</BaseLayout>
