@@ -9,6 +9,7 @@
     "targetGoal": "HIIT / Fat Loss",
     "recommendedMachine": {
       "name": "Sole Fitness E25 Elliptical",
+      "slug": "sole-fitness-e25",
       "tagline": "Heavy 20 lb flywheel prevents pedal slip during max-effort sprints.",
       "affiliateUrl": "https://example.com/affiliate/sole-e25",
       "priceRange": "$1,099",
@@ -46,6 +47,7 @@
     "targetGoal": "Joint Health / LISS",
     "recommendedMachine": {
       "name": "Horizon Fitness 7.0 AE",
+      "slug": "horizon-fitness-7-0-ae",
       "tagline": "Ergonomic 20-inch stride length minimizes knee flexion angles.",
       "affiliateUrl": "https://example.com/affiliate/horizon-7-0-ae",
       "priceRange": "$999",
@@ -73,6 +75,7 @@
     "targetGoal": "Glute Hypertrophy / Climb",
     "recommendedMachine": {
       "name": "NordicTrack AirGlide 14i",
+      "slug": "nordictrack-airglide-14i",
       "tagline": "Up to 15% power ramp incline and -5% decline for maximum posterior chain recruitment.",
       "affiliateUrl": "https://example.com/affiliate/nordictrack-airglide-14i",
       "priceRange": "$1,799",
@@ -104,6 +107,7 @@
     "targetGoal": "Express Fat Burn",
     "recommendedMachine": {
       "name": "Schwinn 470 Elliptical",
+      "slug": "schwinn-470",
       "tagline": "Quick-select Goal Track console keys let you jump resistance levels in one tap.",
       "affiliateUrl": "https://example.com/affiliate/schwinn-470",
       "priceRange": "$899",
@@ -137,6 +141,7 @@
     "targetGoal": "Cardio Stamina / Heart Health",
     "recommendedMachine": {
       "name": "Sunny Health & Fitness SF-E3912",
+      "slug": "sunny-health-fitness-sf-e3912",
       "tagline": "Compact electromagnetic frame ideal for home cardio rooms and daily Zone 2 sessions.",
       "affiliateUrl": "https://example.com/affiliate/sunny-sf-e3912",
       "priceRange": "$499",
@@ -164,6 +169,7 @@
     "targetGoal": "VO2 Max / Anaerobic HIIT",
     "recommendedMachine": {
       "name": "Sole Fitness E35 Elliptical",
+      "slug": "sole-fitness-e35",
       "tagline": "Commercial-grade 25 lb flywheel and dual-track rails lock in stability at 90+ RPM.",
       "affiliateUrl": "https://example.com/affiliate/sole-e35",
       "priceRange": "$1,499",
@@ -194,6 +200,7 @@
     "targetGoal": "Core Toning / Lower Body",
     "recommendedMachine": {
       "name": "Bowflex Max Total 16",
+      "slug": "bowflex-max-total-16",
       "tagline": "Multi-grip dynamic handles and stable frame geometry support forward and reverse interval transitions.",
       "affiliateUrl": "https://example.com/affiliate/bowflex-max-total-16",
       "priceRange": "$1,999",
@@ -223,6 +230,7 @@
     "targetGoal": "Zone 2 Endurance / Longevity",
     "recommendedMachine": {
       "name": "ProForm Pro HIIT H14",
+      "slug": "proform-pro-hiit-h14",
       "tagline": "Silent Magnetic Resistance (SMR) and oversized cushioned pedals keep 45-minute endurance sessions whisper-quiet.",
       "affiliateUrl": "https://example.com/affiliate/proform-hiit-h14",
       "priceRange": "$1,499",

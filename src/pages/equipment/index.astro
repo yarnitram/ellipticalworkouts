@@ -1,0 +1,320 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import machinesData from '../../data/machines.json';
+import { type MachineReview, SITE_CONFIG, resolveAffiliateUrl } from '../../config/site';
+
+const machines = machinesData as MachineReview[];
+const priceTiers = ['All', 'Budget', 'Mid-Range', 'Premium', 'Commercial'] as const;
+
+const hubJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Elliptical Machine Reviews & Buyer\'s Guide | EllipticalWorkouts.com',
+  description:
+    'Independent elliptical machine reviews, hardware spec comparisons, and direct recommendations matched to sprint HIIT, knee rehab, and endurance routines.',
+  url: `${SITE_CONFIG.url}/equipment`,
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: machines.length,
+    itemListElement: machines.map((machine, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${SITE_CONFIG.url}/equipment/${machine.slug}`,
+      name: machine.name,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Elliptical Machine Reviews & Buyer's Guide (2026)"
+  description="In-depth elliptical reviews with verified flywheel weights, stride ergonomics, power incline ratings, and direct workout compatibility."
+  canonicalPath="/equipment"
+  jsonLd={hubJsonLd}
+>
+  <div class="max-w-5xl mx-auto px-4 py-10 sm:py-14">
+    <!-- Header -->
+    <section class="text-center max-w-3xl mx-auto mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-800/80 text-emerald-400 text-xs font-semibold mb-4">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        Tested Hardware &bull; Ergonomic Stride Analysis &bull; Direct Workout Pairing
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        Elliptical Machine <span class="text-emerald-400">Reviews &amp; Buyer's Guide</span>
+      </h1>
+      <p class="text-slate-400 mt-4 text-base sm:text-lg leading-relaxed">
+        Find the exact machine engineered for your training goals—from compact budget options for daily Zone 2 recovery to heavy-flywheel commercial trainers built for explosive HIIT sprints.
+      </p>
+    </section>
+
+    <!-- Search & Tier Filter Console -->
+    <section
+      aria-label="Filter Equipment"
+      class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 mb-8 shadow-lg space-y-4"
+    >
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div class="relative flex-1">
+          <label for="machine-search" class="sr-only">Search machines by brand, model, or feature</label>
+          <input
+            id="machine-search"
+            type="search"
+            placeholder="Search machines (e.g., Sole E25, Horizon, 20 lb flywheel, knee rehab, NordicTrack)..."
+            class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-emerald-500 transition"
+          />
+        </div>
+        <div class="flex items-center justify-between sm:justify-end gap-3 text-xs font-mono text-slate-400 shrink-0">
+          <span id="machine-counter">Showing {machines.length} of {machines.length} machines</span>
+          <button
+            id="clear-machine-filters"
+            type="button"
+            class="hidden px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-emerald-400 font-sans font-semibold transition cursor-pointer"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- Price Tier Filter Pills -->
+      <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800/80">
+        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 mr-1">
+          Price Tier:
+        </span>
+        {priceTiers.map((tier, idx) => (
+          <button
+            type="button"
+            data-tier-pill={tier}
+            aria-pressed={idx === 0 ? 'true' : 'false'}
+            class={
+              idx === 0
+                ? 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition cursor-pointer'
+                : 'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer'
+            }
+          >
+            {tier}
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <!-- Machines Grid -->
+    <section aria-label="Machine Directory">
+      <div id="machine-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {machines.map((machine) => {
+          const affiliateHref = resolveAffiliateUrl(machine.affiliateUrl, machine.slug);
+          const tierColor =
+            machine.priceTier === 'Budget'
+              ? 'bg-sky-950/80 text-sky-300 border-sky-800/70'
+              : machine.priceTier === 'Mid-Range'
+                ? 'bg-emerald-950/80 text-emerald-300 border-emerald-800/70'
+                : machine.priceTier === 'Premium'
+                  ? 'bg-purple-950/80 text-purple-300 border-purple-800/70'
+                  : 'bg-amber-950/80 text-amber-300 border-amber-800/70';
+
+          const searchableText = [
+            machine.name,
+            machine.brand,
+            machine.bestFor,
+            machine.tagline,
+            machine.priceTier,
+            machine.specs.flywheel,
+            machine.specs.strideLength,
+          ]
+            .join(' ')
+            .toLowerCase();
+
+          return (
+            <article
+              data-machine-card
+              data-tier={machine.priceTier}
+              data-search={searchableText}
+              class="group rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/60 transition-all duration-200 p-6 flex flex-col justify-between shadow-md"
+            >
+              <div>
+                <!-- Top Badges -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <div class="flex items-center gap-2">
+                    <span class={`px-2.5 py-1 text-xs font-semibold rounded-md border ${tierColor}`}>
+                      {machine.priceTier}
+                    </span>
+                    <span class="text-xs font-mono text-amber-400 flex items-center gap-1 font-bold">
+                      ★ {machine.rating.toFixed(1)}
+                      <span class="text-slate-500 font-normal">({machine.reviewCount})</span>
+                    </span>
+                  </div>
+                  <span class="text-base font-bold font-mono text-emerald-400">
+                    {machine.priceRange}
+                  </span>
+                </div>
+
+                <!-- Title & Best For -->
+                <h2 class="text-xl font-extrabold text-white group-hover:text-emerald-400 transition tracking-tight">
+                  <a href={`/equipment/${machine.slug}`} class="focus:outline-none">
+                    {machine.name}
+                  </a>
+                </h2>
+                <div class="mt-2 inline-block px-2.5 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-900/50 text-xs font-semibold">
+                  {machine.bestFor}
+                </div>
+                <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                  {machine.tagline}
+                </p>
+
+                <!-- Spec Mini-Grid -->
+                <div class="grid grid-cols-2 gap-2 my-5 p-3 rounded-xl bg-slate-950/70 border border-slate-800/80 text-xs">
+                  <div>
+                    <span class="text-slate-500 block uppercase tracking-wider text-[10px] font-semibold">
+                      Flywheel
+                    </span>
+                    <span class="text-slate-200 font-mono font-medium">
+                      {machine.specs.flywheel}
+                    </span>
+                  </div>
+                  <div>
+                    <span class="text-slate-500 block uppercase tracking-wider text-[10px] font-semibold">
+                      Stride Length
+                    </span>
+                    <span class="text-slate-200 font-mono font-medium">
+                      {machine.specs.strideLength}
+                    </span>
+                  </div>
+                  <div>
+                    <span class="text-slate-500 block uppercase tracking-wider text-[10px] font-semibold">
+                      Incline Range
+                    </span>
+                    <span class="text-slate-200 font-mono font-medium">
+                      {machine.specs.maxIncline}
+                    </span>
+                  </div>
+                  <div>
+                    <span class="text-slate-500 block uppercase tracking-wider text-[10px] font-semibold">
+                      Max User Weight
+                    </span>
+                    <span class="text-slate-200 font-mono font-medium">
+                      {machine.specs.maxUserWeight}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action Links -->
+              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-3">
+                <a
+                  href={`/equipment/${machine.slug}`}
+                  class="text-xs font-bold text-slate-300 hover:text-emerald-400 transition"
+                >
+                  Full Review &amp; Specs &rarr;
+                </a>
+                <a
+                  href={affiliateHref}
+                  target="_blank"
+                  rel="nofollow sponsored"
+                  class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition"
+                >
+                  Check Price
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <!-- Empty State -->
+      <div
+        id="empty-machine-state"
+        class="hidden text-center py-14 px-4 rounded-2xl bg-slate-900/50 border border-slate-800"
+      >
+        <p class="text-lg font-bold text-white mb-1">No matching elliptical machines found</p>
+        <p class="text-sm text-slate-400 mb-4">
+          Try clearing your search keyword or switching the price tier filter pills.
+        </p>
+        <button
+          id="empty-machine-reset-btn"
+          type="button"
+          class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition cursor-pointer"
+        >
+          Show All Machines
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('machine-search') as HTMLInputElement | null;
+    const tierPills = document.querySelectorAll<HTMLButtonElement>('[data-tier-pill]');
+    const cards = document.querySelectorAll<HTMLElement>('[data-machine-card]');
+    const counter = document.getElementById('machine-counter');
+    const clearBtn = document.getElementById('clear-machine-filters');
+    const emptyState = document.getElementById('empty-machine-state');
+    const emptyResetBtn = document.getElementById('empty-machine-reset-btn');
+
+    let activeTier = 'All';
+    let searchQuery = '';
+
+    const activeClass =
+      'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500 text-slate-950 transition cursor-pointer';
+    const inactiveClass =
+      'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer';
+
+    function updatePills() {
+      tierPills.forEach((btn) => {
+        const isSelected = btn.dataset.tierPill === activeTier;
+        btn.setAttribute('aria-pressed', String(isSelected));
+        btn.className = isSelected ? activeClass : inactiveClass;
+      });
+    }
+
+    function applyFilters() {
+      let count = 0;
+      const normalized = searchQuery.trim().toLowerCase();
+
+      cards.forEach((card) => {
+        const cardTier = card.dataset.tier || '';
+        const cardSearch = card.dataset.search || '';
+
+        const matchesTier = activeTier === 'All' || cardTier === activeTier;
+        const matchesSearch = !normalized || cardSearch.includes(normalized);
+
+        if (matchesTier && matchesSearch) {
+          card.classList.remove('hidden');
+          count++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (counter) {
+        counter.textContent = `Showing ${count} of ${cards.length} machines`;
+      }
+
+      const isFiltered = activeTier !== 'All' || normalized.length > 0;
+      if (clearBtn) clearBtn.classList.toggle('hidden', !isFiltered);
+      if (emptyState) emptyState.classList.toggle('hidden', count > 0);
+    }
+
+    function resetFilters() {
+      activeTier = 'All';
+      searchQuery = '';
+      if (searchInput) searchInput.value = '';
+      updatePills();
+      applyFilters();
+    }
+
+    tierPills.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeTier = btn.dataset.tierPill || 'All';
+        updatePills();
+        applyFilters();
+      });
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = (e.target as HTMLInputElement).value;
+        applyFilters();
+      });
+    }
+
+    if (clearBtn) clearBtn.addEventListener('click', resetFilters);
+    if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetFilters);
+  </script>
+</BaseLayout>
