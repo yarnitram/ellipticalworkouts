@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   shortName: 'EllipticalWorkouts',
   url: 'https://ellipticalworkouts.com',
   defaultDescription:
-    'Science-backed elliptical interval workouts with live phone-mounted audio timers, resistance cues, and zero-impact cardio routines for fat loss, knee rehab, and endurance.',
+    'Science-backed elliptical interval workouts with live phone-mounted audio timers, resistance cues, zero-impact cardio routines, and in-depth machine reviews.',
   affiliateTag: 'ellipticalworkouts-20',
   utmSource: 'ellipticalworkouts.com',
 } as const;
@@ -27,6 +27,7 @@ export const MachineSpecsSchema = z.object({
 
 export const RecommendedMachineSchema = z.object({
   name: z.string().min(1),
+  slug: z.string().optional(),
   tagline: z.string().min(1),
   affiliateUrl: z.string().url(),
   priceRange: z.string().min(1),
@@ -34,6 +35,36 @@ export const RecommendedMachineSchema = z.object({
 });
 
 export const WorkoutDifficultySchema = z.enum(['Beginner', 'Intermediate', 'Advanced']);
+
+export const MachinePriceTierSchema = z.enum(['Budget', 'Mid-Range', 'Premium', 'Commercial']);
+
+export const MachineDetailedSpecsSchema = z.object({
+  flywheel: z.string().min(1),
+  strideLength: z.string().min(1),
+  maxIncline: z.string().min(1),
+  resistanceLevels: z.string().min(1),
+  maxUserWeight: z.string().min(1),
+  display: z.string().min(1),
+});
+
+export const MachineReviewSchema = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  name: z.string().min(1),
+  brand: z.string().min(1),
+  price: z.number().positive(),
+  priceRange: z.string().min(1),
+  priceTier: MachinePriceTierSchema,
+  rating: z.number().min(1).max(5),
+  reviewCount: z.number().int().positive(),
+  tagline: z.string().min(1),
+  bestFor: z.string().min(1),
+  verdict: z.string().min(20),
+  specs: MachineDetailedSpecsSchema,
+  pros: z.array(z.string().min(1)).min(2),
+  cons: z.array(z.string().min(1)).min(1),
+  affiliateUrl: z.string().url(),
+  compatibleWorkoutSlugs: z.array(z.string()).min(1),
+});
 
 export const WorkoutSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
@@ -51,12 +82,15 @@ export type WorkoutInterval = z.infer<typeof WorkoutIntervalSchema>;
 export type RecommendedMachine = z.infer<typeof RecommendedMachineSchema>;
 export type WorkoutDifficulty = z.infer<typeof WorkoutDifficultySchema>;
 export type Workout = z.infer<typeof WorkoutSchema>;
+export type MachinePriceTier = z.infer<typeof MachinePriceTierSchema>;
+export type MachineDetailedSpecs = z.infer<typeof MachineDetailedSpecsSchema>;
+export type MachineReview = z.infer<typeof MachineReviewSchema>;
 
 /**
  * Central affiliate URL resolver so affiliate tags and UTM parameters
  * can be updated globally in one place.
  */
-export function resolveAffiliateUrl(rawUrl: string, workoutSlug?: string): string {
+export function resolveAffiliateUrl(rawUrl: string, campaignSlug?: string): string {
   try {
     const parsed = new URL(rawUrl);
     if (!parsed.searchParams.has('tag')) {
@@ -65,8 +99,8 @@ export function resolveAffiliateUrl(rawUrl: string, workoutSlug?: string): strin
     if (!parsed.searchParams.has('utm_source')) {
       parsed.searchParams.set('utm_source', SITE_CONFIG.utmSource);
     }
-    if (workoutSlug && !parsed.searchParams.has('utm_campaign')) {
-      parsed.searchParams.set('utm_campaign', workoutSlug);
+    if (campaignSlug && !parsed.searchParams.has('utm_campaign')) {
+      parsed.searchParams.set('utm_campaign', campaignSlug);
     }
     return parsed.toString();
   } catch {
@@ -177,4 +211,53 @@ export function getRelatedWorkouts(
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map((entry) => entry.item);
+}
+
+export function buildMachineProductJsonLd(machine: MachineReview, canonicalUrl: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: machine.name,
+    description: machine.verdict,
+    url: canonicalUrl,
+    brand: {
+      '@type': 'Brand',
+      name: machine.brand,
+    },
+    offers: {
+      '@type': 'Offer',
+      price: machine.price,
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      url: resolveAffiliateUrl(machine.affiliateUrl, machine.slug),
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: machine.rating,
+      reviewCount: machine.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
+    },
+  };
+}
+
+export function buildMachineBreadcrumbJsonLd(machine: MachineReview, canonicalUrl: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Equipment Reviews',
+        item: `${SITE_CONFIG.url}/equipment`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: machine.name,
+        item: canonicalUrl,
+      },
+    ],
+  };
 }

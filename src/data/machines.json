@@ -1,0 +1,290 @@
+[
+  {
+    "slug": "sole-fitness-e25",
+    "name": "Sole Fitness E25 Elliptical",
+    "brand": "Sole Fitness",
+    "price": 1099,
+    "priceRange": "$1,099",
+    "priceTier": "Mid-Range",
+    "rating": 4.8,
+    "reviewCount": 184,
+    "tagline": "Heavy 20 lb flywheel prevents pedal slip during max-effort sprints.",
+    "bestFor": "Best for HIIT & Home Sprint Protocols",
+    "verdict": "The Sole E25 provides unmatched mechanical stability in the sub-$1,200 class. Its 20 lb flywheel and 20 power incline levels allow athletes to transition seamlessly between conversational cruising and high-wattage sprint intervals without chassis wobble.",
+    "specs": {
+      "flywheel": "20 lb Heavy-Duty Steel",
+      "strideLength": "20 inches Ergonomic",
+      "maxIncline": "20 Levels Power Incline",
+      "resistanceLevels": "20 Magnetic Levels",
+      "maxUserWeight": "350 lbs",
+      "display": "7.5-inch Backlit White LCD + Bluetooth Speakers"
+    },
+    "pros": [
+      "Heavy 20 lb flywheel ensures smooth momentum during 85+ RPM sprints",
+      "20 levels of power incline effectively target hamstrings and glutes",
+      "Whisper-quiet magnetic resistance with rock-solid 350 lb weight capacity",
+      "Integrated tablet holder and Bluetooth audio for phone-mounted workouts"
+    ],
+    "cons": [
+      "Heavy frame (212 lbs) requires two people to assemble or relocate",
+      "Basic LCD console lacks touch screen streaming without personal tablet"
+    ],
+    "affiliateUrl": "https://example.com/affiliate/sole-e25",
+    "compatibleWorkoutSlugs": [
+      "20-minute-hiit-elliptical-burn",
+      "15-minute-express-fat-shred"
+    ]
+  },
+  {
+    "slug": "horizon-fitness-7-0-ae",
+    "name": "Horizon Fitness 7.0 AE Elliptical",
+    "brand": "Horizon Fitness",
+    "price": 999,
+    "priceRange": "$999",
+    "priceTier": "Mid-Range",
+    "rating": 4.7,
+    "reviewCount": 142,
+    "tagline": "Ergonomic 20-inch stride length minimizes knee flexion angles.",
+    "bestFor": "Best for Sensitive Knees & Low-Impact Rehab",
+    "verdict": "Engineered around Horizon's patented SixStar certified frame, the 7.0 AE positions foot pedals closer together (zero-gap Q-factor) to maintain natural hip-knee-ankle alignment. Ideal for joint rehab and fluid daily low-impact conditioning.",
+    "specs": {
+      "flywheel": "23 lb Precision Balanced",
+      "strideLength": "20 inches SixStar Frame",
+      "maxIncline": "20 Levels Power Incline",
+      "resistanceLevels": "20 Digital Magnetic Levels",
+      "maxUserWeight": "325 lbs",
+      "display": "7-inch High-Contrast LCD + Quick-Dial Incline Controls"
+    },
+    "pros": [
+      "SixStar frame maintains natural biomechanics with zero hip flaring",
+      "Quick-turn control dials allow instant resistance adjustments without breaking stride",
+      "23 lb flywheel delivers exceptionally fluid pedal motion for injured joints",
+      "Lifetime frame and motor warranty provides peace of mind"
+    ],
+    "cons": [
+      "No decline capability for targeted downhill simulation",
+      "Console fan is modest in output during hot summer workouts"
+    ],
+    "affiliateUrl": "https://example.com/affiliate/horizon-7-0-ae",
+    "compatibleWorkoutSlugs": [
+      "30-minute-low-impact-knee-rehab",
+      "20-minute-beginner-steady-state-cardio"
+    ]
+  },
+  {
+    "slug": "nordictrack-airglide-14i",
+    "name": "NordicTrack AirGlide 14i",
+    "brand": "NordicTrack",
+    "price": 1799,
+    "priceRange": "$1,799",
+    "priceTier": "Premium",
+    "rating": 4.9,
+    "reviewCount": 215,
+    "tagline": "Up to 15% power ramp incline and -5% decline for maximum posterior chain recruitment.",
+    "bestFor": "Best for Glute Hypertrophy & Mountain Climbs",
+    "verdict": "With a massive 32 lb effective inertia flywheel and rare -5% decline to +15% incline incline range, the AirGlide 14i delivers unparalleled muscular stimulation to the glutes, hamstrings, and calves. The auto-adjusting stride length automatically adapts to the selected slope.",
+    "specs": {
+      "flywheel": "32 lb Inertia-Enhanced",
+      "strideLength": "17.8 - 18.5 inches Auto-Adjusting",
+      "maxIncline": "-5% Decline to +15% Power Incline",
+      "resistanceLevels": "26 Digital SMR Resistance Levels",
+      "maxUserWeight": "300 lbs",
+      "display": "14-inch Smart HD Touchscreen with Tilt/Pivot"
+    },
+    "pros": [
+      "Unique -5% decline to +15% incline range targets muscles other ellipticals miss",
+      "32 lb flywheel delivers whisper-quiet, ultra-smooth commercial inertia",
+      "Silent Magnetic Resistance (SMR) ensures friction-free quiet workouts",
+      "Large 14-inch HD display with premium audio"
+    ],
+    "cons": [
+      "Premium price tag requires significant upfront investment",
+      "Requires active iFIT subscription to access all interactive scenic routes"
+    ],
+    "affiliateUrl": "https://example.com/affiliate/nordictrack-airglide-14i",
+    "compatibleWorkoutSlugs": [
+      "45-minute-pyramid-glute-climb",
+      "30-minute-tabata-afterburn-intervals"
+    ]
+  },
+  {
+    "slug": "schwinn-470",
+    "name": "Schwinn 470 Elliptical",
+    "brand": "Schwinn",
+    "price": 899,
+    "priceRange": "$899",
+    "priceTier": "Mid-Range",
+    "rating": 4.6,
+    "reviewCount": 167,
+    "tagline": "Quick-select Goal Track console keys let you jump resistance levels in one tap.",
+    "bestFor": "Best Value & Fast In-Workout Pacing",
+    "verdict": "The Schwinn 470 packs high-speed perimeter-weighted flywheel tech and 25 resistance levels into an approachable mid-range frame. One-touch quick buttons make this machine an exceptional match for fast-paced interval routines.",
+    "specs": {
+      "flywheel": "High-Speed Perimeter Weighted",
+      "strideLength": "20 inches Precision Path",
+      "maxIncline": "10% Motorized Ramp",
+      "resistanceLevels": "25 Computer-Controlled Levels",
+      "maxUserWeight": "300 lbs",
+      "display": "DualTrack 2-Window Blue Backlit LCD System"
+    },
+    "pros": [
+      "One-touch console buttons jump directly to target resistance during fast HIIT",
+      "DualTrack display allows tablet viewing while maintaining workout metrics visibility",
+      "29 integrated workout programs offer great variety out of the box",
+      "Great price-to-feature ratio in the sub-$900 bracket"
+    ],
+    "cons": [
+      "Motorized incline maxes out at 10% (lower than Sole or NordicTrack)",
+      "Moving handles have slightly thinner foam padding than commercial rigs"
+    ],
+    "affiliateUrl": "https://example.com/affiliate/schwinn-470",
+    "compatibleWorkoutSlugs": [
+      "15-minute-express-fat-shred",
+      "20-minute-beginner-steady-state-cardio"
+    ]
+  },
+  {
+    "slug": "sunny-health-fitness-sf-e3912",
+    "name": "Sunny Health & Fitness SF-E3912",
+    "brand": "Sunny Health & Fitness",
+    "price": 499,
+    "priceRange": "$499",
+    "priceTier": "Budget",
+    "rating": 4.5,
+    "reviewCount": 98,
+    "tagline": "Compact electromagnetic frame ideal for home cardio rooms and daily Zone 2 sessions.",
+    "bestFor": "Best Budget Pick & Compact Spaces",
+    "verdict": "For under $500, the SF-E3912 punches well above its weight. Its programmable magnetic resistance and space-saving footprint make it the top choice for apartment dwellers building their aerobic base without spending thousands.",
+    "specs": {
+      "flywheel": "15.4 lb Magnetic",
+      "strideLength": "15.5 inches Compact",
+      "maxIncline": "Fixed Flat Ergonomic Path",
+      "resistanceLevels": "16 Programmable Levels",
+      "maxUserWeight": "330 lbs",
+      "display": "Digital Monitor with Device Holder"
+    },
+    "pros": [
+      "Incredible budget value under $500 with solid 330 lb user rating",
+      "Compact footprint fits easily into smaller bedrooms and home offices",
+      "Silent electromagnetic brake system keeps workouts quiet",
+      "Built-in device holder holds smartphones perfectly for live timers"
+    ],
+    "cons": [
+      "Shorter 15.5-inch stride length is less comfortable for athletes over 6'1\"",
+      "No incline adjustment (flat oval stride path only)"
+    ],
+    "affiliateUrl": "https://example.com/affiliate/sunny-sf-e3912",
+    "compatibleWorkoutSlugs": [
+      "20-minute-beginner-steady-state-cardio",
+      "15-minute-express-fat-shred"
+    ]
+  },
+  {
+    "slug": "sole-fitness-e35",
+    "name": "Sole Fitness E35 Elliptical",
+    "brand": "Sole Fitness",
+    "price": 1499,
+    "priceRange": "$1,499",
+    "priceTier": "Premium",
+    "rating": 4.9,
+    "reviewCount": 230,
+    "tagline": "Commercial-grade 25 lb flywheel and dual-track rails lock in stability at 90+ RPM.",
+    "bestFor": "Best Commercial-Grade Build & Heavy Sprints",
+    "verdict": "The Sole E35 is the gold standard for heavy home use. Featuring an upgraded 25 lb flywheel, dual rear aluminum rails to prevent side-to-side flex, and multi-position handles with integrated incline/resistance toggle buttons, it handles brutal Tabata sessions with zero rattle.",
+    "specs": {
+      "flywheel": "25 lb Commercial-Grade Heavy Flywheel",
+      "strideLength": "20 inches Multi-Position Custom Fit",
+      "maxIncline": "20 Levels Power Incline",
+      "resistanceLevels": "20 Digital Magnetic Levels",
+      "maxUserWeight": "375 lbs",
+      "display": "7.5-inch Commercial Backlit LCD + Handlebar Toggle Controls"
+    },
+    "pros": [
+      "Dual-track rail system prevents pedal tilt and lateral chassis wobble",
+      "Handlebar toggles let you change incline and resistance without letting go",
+      "375 lb maximum user weight capacity reflects exceptional structural strength",
+      "Pedals feature a 2-degree inward tilt engineered to prevent ankle fatigue"
+    ],
+    "cons": [
+      "Substantial 231 lb frame requires dedicated workout space",
+      "No automatic decline adjustment"
+    ],
+    "affiliateUrl": "https://example.com/affiliate/sole-e35",
+    "compatibleWorkoutSlugs": [
+      "30-minute-tabata-afterburn-intervals",
+      "20-minute-hiit-elliptical-burn"
+    ]
+  },
+  {
+    "slug": "bowflex-max-total-16",
+    "name": "Bowflex Max Total 16",
+    "brand": "Bowflex",
+    "price": 1999,
+    "priceRange": "$1,999",
+    "priceTier": "Commercial",
+    "rating": 4.8,
+    "reviewCount": 178,
+    "tagline": "Multi-grip dynamic handles and stable frame geometry support forward and reverse interval transitions.",
+    "bestFor": "Best Hybrid Stepper/Elliptical & Core Training",
+    "verdict": "The Max Total 16 blends the low-impact glide of an elliptical with the intense caloric burn of a stair stepper. Its dynamic 4-position handlebars and immediate fan-resistance response make it an elite tool for full-body push/pull intervals and reverse-stride core workouts.",
+    "specs": {
+      "flywheel": "High-Inertia Combined Air & Magnetic Resistance",
+      "strideLength": "Vertical Stepper / Elliptical Glide Hybrid",
+      "maxIncline": "20 Digital Resistance Levels",
+      "resistanceLevels": "20 Air/Magnetic Levels",
+      "maxUserWeight": "300 lbs",
+      "display": "16-inch Interactive Console + WiFi Streaming"
+    },
+    "pros": [
+      "Burns up to 2.5x more calories per minute than standard flat ellipticals",
+      "Compact vertical orientation saves floor space compared to long-track trainers",
+      "Dynamic multi-grip handles allow targeted engagement of chest, back, and arms",
+      "Superb 16-inch touchscreen console with built-in streaming compatibility"
+    ],
+    "cons": [
+      "Vertical stride motion is more demanding on quads than traditional horizontal gliding",
+      "Air resistance fan is louder at high RPM than pure magnetic systems"
+    ],
+    "affiliateUrl": "https://example.com/affiliate/bowflex-max-total-16",
+    "compatibleWorkoutSlugs": [
+      "30-minute-reverse-stride-core-sculpt",
+      "30-minute-tabata-afterburn-intervals"
+    ]
+  },
+  {
+    "slug": "proform-pro-hiit-h14",
+    "name": "ProForm Pro HIIT H14",
+    "brand": "ProForm",
+    "price": 1499,
+    "priceRange": "$1,499",
+    "priceTier": "Premium",
+    "rating": 4.7,
+    "reviewCount": 112,
+    "tagline": "Silent Magnetic Resistance (SMR) and oversized cushioned pedals keep 45-minute endurance sessions whisper-quiet.",
+    "bestFor": "Best for Long Endurance & Quiet Zone 2 Training",
+    "verdict": "Combining a 10-inch vertical elliptical path with 5-inch horizontal stride, the Pro HIIT H14 activates the lower body deeply while keeping foot impact at absolute zero. Its 30 lb effective inertia flywheel makes long Zone 2 mitochondrial conditioning sessions silky smooth.",
+    "specs": {
+      "flywheel": "30 lb Effective Inertia",
+      "strideLength": "10 in Vertical / 5 in Horizontal",
+      "maxIncline": "26 Digital Resistance Levels",
+      "resistanceLevels": "26 Digital SMR Levels",
+      "maxUserWeight": "325 lbs",
+      "display": "14-inch Smart HD Touchscreen + CoolAire Workout Fan"
+    },
+    "pros": [
+      "30 lb flywheel provides exceptionally smooth cadence during prolonged steady sessions",
+      "Vertical climb hybrid path eliminates toe numbness during 45+ minute rides",
+      "Silent Magnetic Resistance allows quiet morning workouts without disturbing household",
+      "26 resistance levels provide fine-grained control over heart rate zones"
+    ],
+    "cons": [
+      "Vertical step pattern takes an initial learning curve for standard elliptical users",
+      "Heavy base requires careful room positioning"
+    ],
+    "affiliateUrl": "https://example.com/affiliate/proform-hiit-h14",
+    "compatibleWorkoutSlugs": [
+      "45-minute-zone-2-endurance-base-builder",
+      "45-minute-pyramid-glute-climb"
+    ]
+  }
+]

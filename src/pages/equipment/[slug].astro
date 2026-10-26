@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import machinesData from '../../data/machines.json';
+import workoutsData from '../../data/workouts.json';
+import {
+  type MachineReview,
+  type Workout,
+  SITE_CONFIG,
+  resolveAffiliateUrl,
+  buildMachineProductJsonLd,
+  buildMachineBreadcrumbJsonLd,
+} from '../../config/site';
+
+export async function getStaticPaths() {
+  const machines = machinesData as MachineReview[];
+  return machines.map((machine) => ({
+    params: { slug: machine.slug },
+    props: { machine },
+  }));
+}
+
+interface Props {
+  machine: MachineReview;
+}
+
+const { machine } = Astro.props;
+const allMachines = machinesData as MachineReview[];
+const allWorkouts = workoutsData as Workout[];
+
+const canonicalPath = `/equipment/${machine.slug}`;
+const canonicalUrl = new URL(canonicalPath, SITE_CONFIG.url).toString();
+const affiliateHref = resolveAffiliateUrl(machine.affiliateUrl, machine.slug);
+
+// Find compatible workouts
+const compatibleWorkouts = allWorkouts.filter((w) =>
+  machine.compatibleWorkoutSlugs.includes(w.slug)
+);
+
+// Find 2 other alternative machines
+const alternatives = allMachines
+  .filter((m) => m.slug !== machine.slug)
+  .slice(0, 2);
+
+const jsonLdSchemas = [
+  buildMachineProductJsonLd(machine, canonicalUrl),
+  buildMachineBreadcrumbJsonLd(machine, canonicalUrl),
+];
+
+const tierColor =
+  machine.priceTier === 'Budget'
+    ? 'bg-sky-950/80 text-sky-300 border-sky-800/70'
+    : machine.priceTier === 'Mid-Range'
+      ? 'bg-emerald-950/80 text-emerald-300 border-emerald-800/70'
+      : machine.priceTier === 'Premium'
+        ? 'bg-purple-950/80 text-purple-300 border-purple-800/70'
+        : 'bg-amber-950/80 text-amber-300 border-amber-800/70';
+---
+
+<BaseLayout
+  title={`${machine.name} Review & Hardware Specs (2026)`}
+  description={machine.verdict}
+  canonicalPath={canonicalPath}
+  ogType="article"
+  jsonLd={jsonLdSchemas}
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-5 flex items-center gap-2 text-xs font-medium text-slate-400">
+      <a href="/equipment" class="text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center gap-1 transition">
+        &larr; Back to all equipment
+      </a>
+      <span class="text-slate-600">/</span>
+      <span class="text-slate-400">{machine.brand}</span>
+      <span class="text-slate-600">/</span>
+      <span class="text-slate-300 truncate max-w-[220px] sm:max-w-none">{machine.name}</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class={`px-2.5 py-1 text-xs font-semibold rounded-md border ${tierColor}`}>
+          {machine.priceTier} Tier
+        </span>
+        <span class="px-2.5 py-1 text-xs font-mono font-bold rounded-md bg-slate-900 border border-slate-800 text-amber-400 flex items-center gap-1">
+          ★ {machine.rating.toFixed(1)} / 5.0
+          <span class="text-slate-500 font-normal">({machine.reviewCount} customer ratings)</span>
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        {machine.name} Review
+      </h1>
+
+      <div class="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-950/70 border border-emerald-800/80 text-emerald-300 text-xs font-bold">
+        <span>Award:</span>
+        <span class="text-white">{machine.bestFor}</span>
+      </div>
+
+      <p class="text-slate-400 mt-3 text-base leading-relaxed">
+        {machine.tagline}
+      </p>
+    </header>
+
+    <!-- Primary Affiliate Box -->
+    <section class="p-6 rounded-2xl bg-gradient-to-b from-slate-900 to-slate-900/80 border border-emerald-900/60 mb-10 shadow-xl">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-bold text-emerald-400 block mb-1">
+            Current Verified Price
+          </span>
+          <div class="text-3xl sm:text-4xl font-black text-white font-mono">
+            {machine.priceRange}
+          </div>
+          <p class="text-xs text-slate-400 mt-1">
+            Manufactured by <strong class="text-slate-300">{machine.brand}</strong> &bull; Includes Manufacturer Warranty
+          </p>
+        </div>
+
+        <a
+          href={affiliateHref}
+          target="_blank"
+          rel="nofollow sponsored"
+          class="shrink-0 w-full sm:w-auto px-7 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold rounded-xl text-center text-sm transition shadow-lg shadow-emerald-950/60"
+        >
+          Check Best Price &amp; Availability &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- Editorial Verdict -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-white mb-3">Our Expert Verdict</h2>
+      <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 leading-relaxed text-slate-300 text-base">
+        <p>{machine.verdict}</p>
+      </div>
+    </section>
+
+    <!-- Pros & Cons -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold text-white mb-4">Pros &amp; Cons</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Pros -->
+        <div class="p-5 rounded-xl bg-slate-900/90 border border-emerald-900/40 space-y-3">
+          <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            Key Strengths
+          </div>
+          <ul class="space-y-2.5 text-sm text-slate-300">
+            {machine.pros.map((pro) => (
+              <li class="flex items-start gap-2.5">
+                <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+                <span>{pro}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Cons -->
+        <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-3">
+          <div class="flex items-center gap-2 text-amber-400 font-bold text-sm uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            Things to Consider
+          </div>
+          <ul class="space-y-2.5 text-sm text-slate-300">
+            {machine.cons.map((con) => (
+              <li class="flex items-start gap-2.5">
+                <span class="text-amber-400 font-bold shrink-0 mt-0.5">&minus;</span>
+                <span>{con}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hardware Specifications Matrix -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-white mb-4">Hardware Specifications</h2>
+      <div class="overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-left text-sm">
+          <tbody class="divide-y divide-slate-800 bg-slate-900/60">
+            <tr class="hover:bg-slate-900">
+              <td class="p-3.5 font-semibold text-slate-400 w-1/3">Flywheel Weight</td>
+              <td class="p-3.5 font-mono text-white">{machine.specs.flywheel}</td>
+            </tr>
+            <tr class="hover:bg-slate-900">
+              <td class="p-3.5 font-semibold text-slate-400">Stride Length</td>
+              <td class="p-3.5 font-mono text-white">{machine.specs.strideLength}</td>
+            </tr>
+            <tr class="hover:bg-slate-900">
+              <td class="p-3.5 font-semibold text-slate-400">Incline / Slope Range</td>
+              <td class="p-3.5 font-mono text-white">{machine.specs.maxIncline}</td>
+            </tr>
+            <tr class="hover:bg-slate-900">
+              <td class="p-3.5 font-semibold text-slate-400">Resistance Levels</td>
+              <td class="p-3.5 font-mono text-white">{machine.specs.resistanceLevels}</td>
+            </tr>
+            <tr class="hover:bg-slate-900">
+              <td class="p-3.5 font-semibold text-slate-400">Maximum User Weight</td>
+              <td class="p-3.5 font-mono text-white">{machine.specs.maxUserWeight}</td>
+            </tr>
+            <tr class="hover:bg-slate-900">
+              <td class="p-3.5 font-semibold text-slate-400">Display &amp; Audio</td>
+              <td class="p-3.5 text-white">{machine.specs.display}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Compatible Workouts Section -->
+    {compatibleWorkouts.length > 0 && (
+      <section class="mb-12 border-t border-slate-900 pt-10">
+        <div class="mb-4">
+          <h2 class="text-2xl font-bold text-white">Engineered Workout Routines for This Machine</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            These interval protocols match the flywheel weight and incline resistance range of the {machine.name}.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {compatibleWorkouts.map((workout) => (
+            <article class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 transition flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-2 text-xs">
+                  <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 font-semibold border border-emerald-900/60">
+                    {workout.durationMinutes}m
+                  </span>
+                  <span class="text-slate-400">{workout.difficulty}</span>
+                </div>
+                <h3 class="font-bold text-white text-base leading-snug">
+                  {workout.title}
+                </h3>
+                <p class="text-xs text-slate-400 mt-2 line-clamp-2">
+                  {workout.description}
+                </p>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
+                <span class="text-xs font-mono text-emerald-400">{workout.caloriesBurned}</span>
+                <a
+                  href={`/workouts/${workout.slug}`}
+                  class="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition"
+                >
+                  Launch Live Timer &rarr;
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Alternative Equipment -->
+    {alternatives.length > 0 && (
+      <section class="border-t border-slate-900 pt-10">
+        <h2 class="text-xl font-bold text-white mb-4">Compare Alternative Machines</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {alternatives.map((alt) => (
+            <a
+              href={`/equipment/${alt.slug}`}
+              class="group p-4 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-emerald-500/50 transition flex items-center justify-between"
+            >
+              <div>
+                <div class="text-xs text-slate-500 font-mono">{alt.priceTier} &bull; {alt.priceRange}</div>
+                <div class="text-sm font-bold text-white group-hover:text-emerald-400 transition mt-0.5">
+                  {alt.name}
+                </div>
+                <div class="text-xs text-slate-400 mt-1">{alt.bestFor}</div>
+              </div>
+              <span class="text-emerald-400 text-sm font-bold group-hover:translate-x-1 transition">
+                &rarr;
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>
